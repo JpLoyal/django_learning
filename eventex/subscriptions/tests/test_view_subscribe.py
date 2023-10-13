@@ -57,10 +57,13 @@ class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name='João Pedro', cpf='12345678901',
                     email='example@gmail.com', phone='0101010101')
-        self.resp = self.client.post('/inscricao', data)
+        self.resp = self.client.post('/inscricao/', data)
 
     #def test_save_subscription(self):
     #    self.assertTrue(Subscription.objects.exists())
+
+    def test_post(self):
+        self.assertRedirects(self.resp, '/inscricao/1/')
 
 class SubscribePostInvalid(TestCase):
     def setUp(self):
